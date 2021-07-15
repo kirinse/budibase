@@ -38,7 +38,7 @@ spec:
         - name: INTERNAL_API_KEY
           value: {{ .Values.globals.internalApiKey | quote }}
         - name: JWT_SECRET
-          value: {{ .Values.globals.jwt_secret | quote }}
+          value: {{ .Values.globals.jwtSecret | quote }}
         - name: MINIO_ACCESS_KEY
           value: {{ .Values.services.object_store.accessKey }}
         - name: MINIO_SECRET_KEY
@@ -52,7 +52,7 @@ spec:
         - name: REDIS_URL
           value: "{{ .Values.services.redis.host }}:{{ .Values.services.redis.port }}"
         - name: SELF_HOSTED
-          value: {{ .Values.globals.self_hosted | quote }}
+          value: {{ .Values.globals.selfHosted | quote }}
         image: budibase/worker
         imagePullPolicy: ""
         name: bbworker

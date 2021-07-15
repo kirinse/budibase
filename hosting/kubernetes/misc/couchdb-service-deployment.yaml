@@ -56,11 +56,11 @@ spec:
         resources: {}
         volumeMounts:
         - mountPath: /opt/couchdb/data
-          name: couchdb3-data
+          name: couchdb-service-volume
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
-      - name: couchdb3-data
-        persistentVolumeClaim:
-          claimName: couchdb3-data
+      - name: couchdb-service-volume
+        hostPath:
+          path: /opt/couchdb/data
 status: {}

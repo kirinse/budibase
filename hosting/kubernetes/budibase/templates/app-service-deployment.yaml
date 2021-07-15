@@ -31,7 +31,7 @@ spec:
         - name: COUCH_DB_URL
           value: "{{ .Values.services.couchdb.host }}:{{ .Values.services.couchdb.port }}"
         - name: ENABLE_ANALYTICS
-          value: {{ .Values.globals.enableAnalytics }}
+          value: {{ .Values.globals.enableAnalytics | quote }}
         - name: INTERNAL_API_KEY
           value: {{ .Values.globals.internalApiKey }}
         - name: JWT_SECRET

@@ -1,0 +1,24 @@
+# helm install -f ./values.local.yaml posthog .
+# helm upgrade -f ./values.local.yaml posthog .
+
+web:
+  replicacount: 2
+worker:
+  replicacount: 2
+plugins:
+  replicacount: 4
+
+posthogSecret: 'werjawoeifj;avsdfnvas.fklwejfwa;elkfjwalke;fjawklejfawkl;'
+
+postgresql:
+  enabled: true
+  postgresqlDatabase: posthog
+  postgresqlUsername: postgres
+  postgresqlPassword: postgres
+
+redis:
+  password: 'some-stable-password'
+
+ingress:
+  enabled: true
+  hostname: posthog.127.0.0.1.nip.io

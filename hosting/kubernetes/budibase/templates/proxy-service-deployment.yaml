@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: proxy-service
+    app.kubernetes.io/name: budibase-proxy
   name: proxy-service
 spec:
   replicas: {{ .Values.services.proxy.replicaCount }}
   selector:
     matchLabels:
-      io.kompose.service: proxy-service
+      app.kubernetes.io/name: budibase-proxy
   strategy:
     type: Recreate
   template:
@@ -22,7 +22,7 @@ spec:
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
-        io.kompose.service: proxy-service
+        app.kubernetes.io/name: budibase-proxy
     spec:
       containers:
       - image: envoyproxy/envoy:v1.16-latest
@@ -39,5 +39,5 @@ spec:
       volumes:
       - name: proxy-service-volume
         hostPath:
-          path: /home/k8s/envoy
+          path: /etc/envoy
 status: {}

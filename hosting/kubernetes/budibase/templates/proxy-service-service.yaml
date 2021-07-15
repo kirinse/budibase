@@ -6,15 +6,15 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: proxy-service
+    app.kubernetes.io/name: budibase-proxy
   name: proxy-service
 spec:
   type: NodePort
   ports:
   - port: {{ .Values.services.proxy.port }}
     targetPort: {{ .Values.services.proxy.port }}
-    nodePort: {{ .Values.services.proxy.nodePort }}
+    protocol: TCP
   selector:
-    io.kompose.service: proxy-service
+    app.kubernetes.io/name: budibase-proxy
 status:
   loadBalancer: {}

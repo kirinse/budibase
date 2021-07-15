@@ -21,10 +21,6 @@ static_resources:
                   cluster: app-service
                   prefix_rewrite: "/"
 
-              - match: { path: "/v1/update" }
-                route:
-                  cluster: watchtower-service
-
               - match: { prefix: "/builder/" }
                 route:
                   cluster: app-service
@@ -82,7 +78,7 @@ static_resources:
         - endpoint:
             address:
               socket_address: 
-                address: 10.97.88.247
+                address: app-service.default.svc.cluster.local
                 port_value: 4002
 
   - name: minio-service
@@ -96,7 +92,7 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: 10.97.88.247
+                address: minio-service.default.svc.cluster.local
                 port_value: 9000
 
   - name: worker-service
@@ -110,8 +106,8 @@ static_resources:
         - endpoint:
             address:
               socket_address: 
-                address: 10.101.122.74
-                port_value: 4003
+                address: worker-service.default.svc.cluster.local
+                port_value: 4001
 
   - name: couchdb-service
     connect_timeout: 0.25s
@@ -124,20 +120,6 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: 10.96.145.235
+                address: couchdb-service.default.svc.cluster.local
                 port_value: 5984
-
-  - name: watchtower-service
-    connect_timeout: 0.25s
-    type: strict_dns
-    lb_policy: round_robin
-    load_assignment:
-      cluster_name: watchtower-service
-      endpoints:
-      - lb_endpoints:
-        - endpoint:
-            address:
-              socket_address: 
-                address: watchtower-service
-                port_value: 8080
 
