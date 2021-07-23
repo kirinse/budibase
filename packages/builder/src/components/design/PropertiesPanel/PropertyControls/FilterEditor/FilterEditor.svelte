@@ -38,17 +38,17 @@
   }
 </script>
 
-<ActionButton on:click={drawer.show}>Define Filters</ActionButton>
+<ActionButton on:click={drawer.show}>Define filters</ActionButton>
 <Drawer bind:this={drawer} title="Filtering">
   <Button cta slot="buttons" on:click={saveFilter}>Save</Button>
   <DrawerContent slot="body">
-    <Layout>
+    <Layout noPadding>
       <Body size="S">
         {#if !numFilters}
           Add your first filter column.
         {:else}
           Results are filtered to only those which match all of the following
-          constaints.
+          constraints.
         {/if}
       </Body>
       <LuceneFilterBuilder bind:value={tempValue} {schemaFields} />
