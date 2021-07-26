@@ -41,6 +41,7 @@ service:
 
 ingress:
   enabled: false
+  certificateArn:  arn:aws:acm:eu-west-1:545012296077:certificate/507db6ec-ae27-475c-984a-cb590162d567
   className: ""
   annotations: 
     kubernetes.io/ingress.class: alb
@@ -123,18 +124,17 @@ services:
   redis:
     enabled: true
     replicaCount: 1
+    # host: budibase-eks-production.uullg4.0001.euw1.cache.amazonaws.com
     host: redis-service
     port: 6379
     password: budibase
     storage: 100Mi
   
   object_store:
-    minio: true
-    browser: true
+    minio: false
+    browser: false
     port: 9000
     replicaCount: 1
-    url: minio-service:9000
-    accessKey: budibase
-    secretKey: budibase
+    # url: minio-service:9000
     storage: 100Mi
 
